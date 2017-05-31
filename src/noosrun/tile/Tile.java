@@ -71,5 +71,9 @@ public abstract class Tile {
     public Rectangle getBounds(){
         return new Rectangle(getX(), getY(), width, height);
     }
+
+    public int getHeight() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 

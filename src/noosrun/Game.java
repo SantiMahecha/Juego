@@ -8,6 +8,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -19,6 +22,7 @@ import noosrun.gfx.SpriteSheet;
 import noosrun.gfx.gui.Launcher;
 import noosrun.input.KeyInput;
 import noosrun.input.MouseInput;
+import noosrun.tile.Tile;
 import noosrun.tile.Wall;
 
 public class Game extends Canvas implements Runnable{
@@ -44,6 +48,7 @@ public class Game extends Canvas implements Runnable{
     public static int coins = 0;
     public static int lives = 5;
     public static int deathScreenTime = 0;
+    public static int deathY = 0;
     
     public static boolean showDeathScreen = true;
     public static boolean gameOver = false;
@@ -248,6 +253,22 @@ public class Game extends Canvas implements Runnable{
         
         handler.clearLevel();
         handler.createLevel(levels[level]);
+    }
+    
+    public static int getDeathY(){
+        LinkedList<Tile> tempList = handler.tile;
+        
+        Comparator<Tile> tileSorter = new Comparator<Tile>(){
+            
+            public int compare(Tile t1, Tile t2) {
+                if(t1.getY()>t2.getY()) return -1;
+                if(t1.getY()<t2.getY()) return 1;
+                return 0;
+            }
+        
+        };
+        Collections.sort(tempList,tileSorter);
+        return tempList.getFirst().getY()+5;
     }
     
     public static void main(String[] args) {

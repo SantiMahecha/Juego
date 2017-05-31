@@ -1,6 +1,6 @@
 package noosrun;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -80,6 +80,8 @@ public class Handler {
                     if(red==255 && green==0 && blue==255) addTile(new Flag(x*64,y*64,64,64,true,Id.flag,this));
                 }
         }
+            
+            Game.deathY = Game.getDeathY();
 
     }
     

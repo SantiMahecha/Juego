@@ -35,6 +35,7 @@ public class Player extends Entity {
         x+=velX;
         y+=velY;
         
+        if(getY()>Game.getDeathY())die();
         
         for(int i = 0; i<handler.tile.size();i++){
             Tile t = handler.tile.get(i);
@@ -76,7 +77,7 @@ public class Player extends Entity {
                 
                 if(getBoundsRight().intersects(t.getBounds())){
                     setVelX(0);
-                    x = t.getX()-t.width;
+                    x = t.getX()-width;
                 }
                 
         }
